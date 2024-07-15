@@ -24,16 +24,30 @@ Sort: {number_of_employees: 1}
 **3. All the companies founded between 2000 and 2005, both years included. Retrieve only the `name` and `founded_year` fields.**
 
 <!-- Your Query Goes Here -->
-Query: {$and: [{founded_year: {$gte:2000}}, {founded_year: {$lte:2005}}]}
-Projection: {name: 1, founded_year:1, _id:0}
+Query: {
+        $and: [
+            {founded_year: {$gte:2000}}, 
+            {founded_year: {$lte:2005}}
+            ]
+        }
+Projection: {
+                name: 1, founded_year:1, _id:0
+            }
 
 <br>
 
 **4. All the companies that had a Valuation Amount of more than 100.000.000 and have been founded before 2010. Retrieve only the `name` and `ipo` fields.**
 
 <!-- Your Query Goes Here -->
-Query: {$and: [{"ipo.valuation_amount": {$gt:100000000}}, {founded_year: {$lt:2010}}]}
-Projection:{name:1, ipo:1, _id:0}
+Query: {
+            $and: [
+                {"ipo.valuation_amount": {$gt:100000000}}, 
+                {founded_year: {$lt:2010}}
+            ]
+        }
+Projection:{
+            name:1, ipo:1, _id:0
+           }
 
 <br>
 
@@ -89,25 +103,42 @@ Limit: 10
 **1. All the companies that have been acquired after 2010, order by the acquisition amount, and retrieve only their `name` and `acquisition` field.**
 
 <!-- Your Query Goes Here -->
-Query: {'acquisition.acquired_year': {$gt: 2010}}
-Projection: {name: 1, acquisition: 1, _id: 0}
-Sort: {'acquisition.price_amount': -1}
+Query: {
+        'acquisition.acquired_year': {$gt: 2010}
+       }
+Projection: {
+                name: 1, acquisition: 1, _id: 0
+            }
+Sort: {
+        'acquisition.price_amount': -1
+     }
 
 <br>
 
 **2. Order the companies by their `founded year`, retrieving only their `name` and `founded year`.**
 
 <!-- Your Query Goes Here -->
-Query: {'founded_year': { '$ne': null }}
-Projection: {name: 1, founded_year: 1, _id: 0}
-Sort: {founded_year: 1}
+Query: {
+        'founded_year': { $ne: null }
+       }
+Projection: {
+            name: 1, founded_year: 1, _id: 0
+            }
+Sort: {
+    founded_year: 1
+      }
 
 <br>
 
 **3. All the companies on the 'web' `category` that have more than 4000 employees. Sort them by the amount of employees in ascending order.**
 
 <!-- Your Query Goes Here -->
-Query: {$and: [{category_code: 'web'}, {number_of_employees: {$gt: 4000}}]}
+Query: {
+        $and: [
+            {category_code: 'web'}, 
+            {number_of_employees: {$gt: 4000}}
+            ]
+      }
 Sort: {number_of_employees: 1}
 
 <br>
@@ -115,13 +146,24 @@ Sort: {number_of_employees: 1}
 **4. All the companies whose acquisition amount is more than 10.000.000, and currency is 'EUR'.**
 
 <!-- Your Query Goes Here -->
-Query: {$and: [{'acquisition.price_currency_code': 'EUR'}, {'acquisition.price_amount': {$gt: 10000000}}]}
+Query: {
+        $and: [
+            {'acquisition.price_currency_code': 'EUR'}, 
+            {'acquisition.price_amount': {$gt: 10000000}}
+            ]
+       }
 
 <br>
 
 **5. All the companies that have been founded between 2000 and 2010, but have not been acquired before 2011.**
 
 <!-- Your Query Goes Here -->
-Query: {$and: [{founded_year: {$gte: 2000}}, {founded_year: {$lte: 2010}}, {'acquisition.acquired_year':{$gt:2011}}]}
+Query: {
+        $and: [
+            {founded_year: {$gte: 2000}}, 
+            {founded_year: {$lte: 2010}}, 
+            {'acquisition.acquired_year':{$gte:2011}}
+            ]
+       }
 
 <br>
